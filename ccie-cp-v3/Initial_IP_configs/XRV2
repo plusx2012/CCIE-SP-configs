@@ -1,0 +1,11 @@
+conf t
+
+interface GigabitEthernet0/0/0/1
+  no shut
+!
+interface Loopback0
+ ipv4 address 20.20.20.20 255.255.255.255
+!
+interface GigabitEthernet0/0/0/1.1920
+ ipv4 address  10.19.20.20 255.255.255.0
+ encapsulation dot1q 1920

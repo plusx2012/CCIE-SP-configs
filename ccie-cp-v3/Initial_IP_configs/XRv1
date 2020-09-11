@@ -1,0 +1,56 @@
+# http://tech.silvique.ro/2017/11/14/cisco-ios-xrv-on-vmware-fusion/
+# https://www.letsconfig.com/how-to-configure-ssh-on-cisco-ios-xr/
+#
+
+RP/0/0/CPU0:XRV1#show run
+Fri Sep 11 02:49:13.123 UTC
+Building configuration...
+!! IOS XR Configuration 5.3.3
+!! Last configuration change at Thu Sep 10 17:09:29 2020 by admin
+!
+hostname XRV1
+domain name ios.local
+line default
+ transport input ssh
+!
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0
+ ipv4 address 192.168.2.201 255.255.255.0
+!
+interface GigabitEthernet0/0/0/1
+!
+interface GigabitEthernet0/0/0/1.100
+ ipv4 address 10.10.10.121 255.255.255.0
+ encapsulation dot1q 100
+!
+interface GigabitEthernet0/0/0/2
+ shutdown
+!
+ssh server v2
+end
+
+----
+
+conf t
+
+no interface GigabitEthernet0/0/0/1.100 
+!
+interface Loopback0
+ ipv4 address 19.19.19.19 255.255.255.255
+!
+interface GigabitEthernet0/0/0/1.519
+ ipv4 address  10.5.19.19 255.255.255.0
+ encapsulation dot1q 519
+!
+interface GigabitEthernet0/0/0/1.619
+ ipv4 address  10.6.19.19 255.255.255.0
+ encapsulation dot1q 619
+!
+interface GigabitEthernet0/0/0/1.1920
+ ipv4 address  10.19.20.19 255.255.255.0
+ encapsulation dot1q 1920
+!
+
+----
