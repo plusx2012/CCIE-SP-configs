@@ -1,0 +1,32 @@
+
+-----
+
+conf t
+int lo 0
+ ip addr 3.3.3.3 255.255.255.255
+!
+
+conf t
+interface GigabitEthernet0/0
+ ip address 192.168.2.223 255.255.255.0
+ no shut
+ !
+
+interface GigabitEthernet1/0
+ no shut
+!
+
+interface GigabitEthernet1/0.23
+ encapsulation dot1Q 23
+ ip address 10.2.3.3 255.255.255.0
+!
+interface GigabitEthernet1/0.34
+ encapsulation dot1Q 34
+ ip address 10.3.4.3 255.255.255.0
+!
+interface GigabitEthernet1/0.36
+ encapsulation dot1Q 36
+ ip address 10.3.6.3 255.255.255.0
+!
+end
+wr mem

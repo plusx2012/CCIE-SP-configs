@@ -1,0 +1,33 @@
+Conf t
+Ip domain name ios.local
+crypto key generate rsa
+
+show crypto key mypubkey rsa 1024
+
+Ip ssh version 2
+
+Line vty 0 4
+Transport input ssh
+Login local 
+
+Username admin pass 0 admin
+Username admin privilege 15
+
+Service pass
+Enable secret admin
+
+-----
+
+conf t
+int lo 0
+ ip addr 1.1.1.1 255.255.255.255
+!
+
+interface GigabitEthernet1/0
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet1/0.12
+ encapsulation dot1Q 12
+ ip address 10.1.2.1 255.255.255.0
+!
